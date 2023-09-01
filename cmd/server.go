@@ -6,6 +6,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/USA-RedDragon/meshchat-go/internal/http"
 	"github.com/spf13/cobra"
 	"github.com/ztrue/shutdown"
 )
@@ -28,12 +29,22 @@ func init() {
 }
 
 func runServer(cmd *cobra.Command, _ []string) error {
+	port, err := cmd.Flags().GetInt("port")
+	if err != nil {
+		return err
+	}
+	server := http.NewServer(port)
+	if err := server.Start(); err != nil {
+		return err
+	}
+
 	stop := func(sig os.Signal) {
 		wg := new(sync.WaitGroup)
 
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
+			_ = server.Stop()
 		}()
 
 		const timeout = 10 * time.Second
