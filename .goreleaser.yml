@@ -1,0 +1,132 @@
+---
+project_name: meshchat-go
+
+release:
+  extra_files:
+    - glob: ./LICENSE
+  github:
+    owner: USA-RedDragon
+    name: meshchat-go
+
+dockers:
+  - image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-amd64"
+    use: buildx
+    goarch: amd64
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - --label=org.opencontainers.image.licenses=AGPL-3.0-or-later
+      - --label=org.opencontainers.image.url=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - --label=org.opencontainers.image.source=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - "--platform=linux/amd64"
+  - image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-armv7"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-armv7"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-armv7"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-armv7"
+    use: buildx
+    goarch: arm
+    goarm: "7"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - --label=org.opencontainers.image.licenses=AGPL-3.0-or-later
+      - --label=org.opencontainers.image.url=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - --label=org.opencontainers.image.source=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - "--platform=linux/arm/v7"
+  - image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-armv6"
+    use: buildx
+    goarch: arm
+    goarm: "6"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - --label=org.opencontainers.image.licenses=AGPL-3.0-or-later
+      - --label=org.opencontainers.image.url=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - --label=org.opencontainers.image.source=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - "--platform=linux/arm/v6"
+  - image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-arm64"
+    use: buildx
+    goarch: arm64
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - --label=org.opencontainers.image.licenses=AGPL-3.0-or-later
+      - --label=org.opencontainers.image.url=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - --label=org.opencontainers.image.source=https://github.com/USA-RedDragon/{{ .ProjectName }}
+      - "--platform=linux/arm64"
+
+docker_manifests:
+  - name_template: "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}"
+    image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:{{ .Tag }}-armv7"
+  - name_template: "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}"
+    image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}-armv7"
+  - name_template: "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}"
+    image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:v{{ .Major }}.{{ .Minor }}-armv7"
+  - name_template: "ghcr.io/usa-reddragon/meshchat-go:latest"
+    image_templates:
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-amd64"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-arm64"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-armv6"
+      - "ghcr.io/usa-reddragon/meshchat-go:latest-armv7"
+
+builds:
+  - main: .
+    binary: meshchat
+    goos:
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm
+      - arm64
+      - riscv64
+      - mips
+    goarm:
+      - "6"
+      - "7"
+    gomips:
+      - "softfloat"
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+
+milestones:
+  - close: true
