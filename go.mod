@@ -4,7 +4,7 @@ go 1.21.5
 
 require (
 	github.com/labstack/echo/v4 v4.11.3
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.8.0
 	github.com/ztrue/shutdown v0.1.1
 )
 
